@@ -1,4 +1,4 @@
-﻿using management.Components;
+﻿using Management.src.Components;
 
 namespace management;
 
@@ -133,8 +133,6 @@ partial class LoginForm
         Name = "LoginForm";
         StartPosition = FormStartPosition.CenterScreen;
         Text = "Login";
-        Load += LoginForm_Load;
-        Resize += LoginForm_Resize;
         ((System.ComponentModel.ISupportInitialize)backPictureBox).EndInit();
         ResumeLayout(false);
         PerformLayout();

@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace management.Components;
+namespace Management.src.Components;
 
 public class RoundedTextBox : TextBox
 {

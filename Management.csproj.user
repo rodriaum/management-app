@@ -7,5 +7,11 @@
     <Compile Update="src\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="src\ManageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="src\Template\TemplateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
