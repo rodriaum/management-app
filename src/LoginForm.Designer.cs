@@ -120,7 +120,7 @@ partial class LoginForm
         this.loginLabel.AutoSize = true;
         this.loginLabel.BackColor = Color.FromArgb(15, 19, 32);
         this.loginLabel.Font = new Font("Barlow", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        this.loginLabel.Location = new Point(293, 108);
+        this.loginLabel.Location = new Point(305, 108);
         this.loginLabel.Margin = new Padding(2, 0, 2, 0);
         this.loginLabel.Name = "loginLabel";
         this.loginLabel.Size = new Size(210, 37);

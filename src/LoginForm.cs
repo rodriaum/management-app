@@ -18,11 +18,6 @@ public partial class LoginForm : TemplateForm
         string password = passwordTextBox.Text
             .Replace("\n", ""); // Multi-line TextBox
 
-        string hashPassword = EncryptionHelper.HashTextToSHA256(password);
-    }
-
-    private void button1_Click(object sender, EventArgs e)
-    {
-
+        string hashPassword = EncryptionHelper.SHA256(password);
     }
 }

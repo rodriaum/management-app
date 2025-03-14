@@ -5,9 +5,9 @@ namespace Management.src.Helpers;
 
 public class EncryptionHelper
 {
-    public static string HashTextToSHA256(string s)
+    public static string SHA256(string s)
     {
-        using (SHA256 sha256Hash = SHA256.Create())
+        using (SHA256 sha256Hash = System.Security.Cryptography.SHA256.Create())
         {
             byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(s));
             StringBuilder builder = new StringBuilder();
