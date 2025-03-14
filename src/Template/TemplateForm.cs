@@ -42,48 +42,55 @@ public class TemplateForm : Form
 
     private void ResizeAllControls()
     {
-        float widthRatio = (float)this.Width / _originalFormSize.Width;
-        float heightRatio = (float)this.Height / _originalFormSize.Height;
-
-        foreach (Control control in this.Controls)
+        try
         {
-            if (_originalControlData.TryGetValue(control, out Rectangle originalRect))
+            float widthRatio = (float)this.Width / _originalFormSize.Width;
+            float heightRatio = (float)this.Height / _originalFormSize.Height;
+
+            foreach (Control control in this.Controls)
             {
-                int newX = (int)(originalRect.X * widthRatio);
-                int newY = (int)(originalRect.Y * heightRatio);
-                int newWidth = (int)(originalRect.Width * widthRatio);
-                int newHeight = (int)(originalRect.Height * heightRatio);
-
-                control.Location = new Point(newX, newY);
-                control.Size = new Size(newWidth, newHeight);
-
-                if (control is Label label && label.Tag != null)
+                if (_originalControlData.TryGetValue(control, out Rectangle originalRect))
                 {
-                    float originalFontSize = (float)label.Tag;
-                    float scaleFactor = Math.Min(widthRatio, heightRatio);
-                    label.Font = new Font(label.Font.FontFamily, originalFontSize * scaleFactor, label.Font.Style);
-                }
+                    int newX = (int)(originalRect.X * widthRatio);
+                    int newY = (int)(originalRect.Y * heightRatio);
+                    int newWidth = (int)(originalRect.Width * widthRatio);
+                    int newHeight = (int)(originalRect.Height * heightRatio);
 
-                if (control is TextBox textBox)
-                {
-                    if (textBox.Tag == null)
-                        textBox.Tag = textBox.Font.Size;
+                    control.Location = new Point(newX, newY);
+                    control.Size = new Size(newWidth, newHeight);
 
-                    float originalFontSize = (float)textBox.Tag;
-                    float scaleFactor = Math.Min(widthRatio, heightRatio);
-                    textBox.Font = new Font(textBox.Font.FontFamily, originalFontSize * scaleFactor, textBox.Font.Style);
-                }
+                    if (control is Label label && label.Tag != null)
+                    {
+                        float originalFontSize = (float)label.Tag;
+                        float scaleFactor = Math.Min(widthRatio, heightRatio);
+                        label.Font = new Font(label.Font.FontFamily, originalFontSize * scaleFactor, label.Font.Style);
+                    }
 
-                if (control is Button button)
-                {
-                    if (button.Tag == null)
-                        button.Tag = button.Font.Size;
+                    if (control is TextBox textBox)
+                    {
+                        if (textBox.Tag == null)
+                            textBox.Tag = textBox.Font.Size;
 
-                    float originalFontSize = (float)button.Tag;
-                    float scaleFactor = Math.Min(widthRatio, heightRatio);
-                    button.Font = new Font(button.Font.FontFamily, originalFontSize * scaleFactor, button.Font.Style);
+                        float originalFontSize = (float)textBox.Tag;
+                        float scaleFactor = Math.Min(widthRatio, heightRatio);
+                        textBox.Font = new Font(textBox.Font.FontFamily, originalFontSize * scaleFactor, textBox.Font.Style);
+                    }
+
+                    if (control is Button button)
+                    {
+                        if (button.Tag == null)
+                            button.Tag = button.Font.Size;
+
+                        float originalFontSize = (float)button.Tag;
+                        float scaleFactor = Math.Min(widthRatio, heightRatio);
+                        button.Font = new Font(button.Font.FontFamily, originalFontSize * scaleFactor, button.Font.Style);
+                    }
                 }
             }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message, "Erro ao Redimensionar", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
