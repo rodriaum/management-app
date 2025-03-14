@@ -2,43 +2,52 @@
 
 public class TemplateForm : Form
 { 
-    private Size originalFormSize;
-    private Dictionary<Control, Rectangle> originalControlData = new Dictionary<Control, Rectangle>();
+    private Size _originalFormSize;
+    private Dictionary<Control, Rectangle> _originalControlData = new Dictionary<Control, Rectangle>();
 
-    public TemplateForm()
+    private bool _isLoaded = false;
+
+    public TemplateForm() : base()
     {
+        if (this.DesignMode) return;
+
         this.Load += this.Form_Load;
         this.Resize += this.Form_Resize;
     }
 
-    private void Form_Load(object sender, EventArgs e)
+    private void Form_Load(object? sender, EventArgs e)
     {
-        originalFormSize = this.Size;
+        if (this.Controls.Count == 0) return;
+
+        _originalFormSize = this.Size;
 
         foreach (Control control in this.Controls)
         {
-            originalControlData.Add(control, new Rectangle(control.Location, control.Size));
+            _originalControlData.Add(control, new Rectangle(control.Location, control.Size));
 
             if (control is Label label && label.AutoSize)
             {
                 label.Tag = label.Font.Size;
             }
         }
+
+        this._isLoaded = true;
     }
 
-    private void Form_Resize(object sender, EventArgs e)
+    private void Form_Resize(object? sender, EventArgs e)
     {
-        ResizeAllControls();
+        if (this._isLoaded)
+            ResizeAllControls();
     }
 
     private void ResizeAllControls()
     {
-        float widthRatio = (float)this.Width / originalFormSize.Width;
-        float heightRatio = (float)this.Height / originalFormSize.Height;
+        float widthRatio = (float)this.Width / _originalFormSize.Width;
+        float heightRatio = (float)this.Height / _originalFormSize.Height;
 
         foreach (Control control in this.Controls)
         {
-            if (originalControlData.TryGetValue(control, out Rectangle originalRect))
+            if (_originalControlData.TryGetValue(control, out Rectangle originalRect))
             {
                 int newX = (int)(originalRect.X * widthRatio);
                 int newY = (int)(originalRect.Y * heightRatio);

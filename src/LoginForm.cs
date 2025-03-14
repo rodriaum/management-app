@@ -7,7 +7,6 @@ public partial class LoginForm : TemplateForm
 {
     public LoginForm()
     {
-        
         InitializeComponent();
     }
 
@@ -20,5 +19,10 @@ public partial class LoginForm : TemplateForm
             .Replace("\n", ""); // Multi-line TextBox
 
         string hashPassword = EncryptionHelper.HashTextToSHA256(password);
+    }
+
+    private void button1_Click(object sender, EventArgs e)
+    {
+
     }
 }
