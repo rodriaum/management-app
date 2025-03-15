@@ -23,4 +23,4 @@ Um sistema completo de gerenciamento empresarial desenvolvido para Windows, ofer
 
 ## Licença
 
-[GPL-3.0 license](https://github.com/rodriaum/rars-robot?tab=GPL-3.0-1-ov-file)
+[GPL-3.0 license](https://github.com/rodriaum/management-app?tab=GPL-3.0-1-ov-file)
